@@ -51,6 +51,7 @@ import 'pagination_state.dart';
 //   }
 // }
 
+
 abstract class PaginationBloc<Event, Entity>
     extends Bloc<Event, PaginationState<List<Entity>>> {
   PaginationBloc({required int initialPage})

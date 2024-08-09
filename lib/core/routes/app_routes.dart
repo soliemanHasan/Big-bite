@@ -2,10 +2,16 @@
 import 'package:big_bite/modules/auth/presentation/routes/login_route.dart';
 import 'package:big_bite/modules/auth/presentation/routes/register_route.dart';
 import 'package:big_bite/modules/auth/presentation/routes/verify_route.dart';
+import 'package:big_bite/modules/basket/presentation/route/basket_route.dart';
 import 'package:big_bite/modules/home/presentation/routes/main_route.dart';
 import 'package:big_bite/modules/home/presentation/routes/show_news_details_route.dart';
 import 'package:big_bite/modules/meals/presentation/route/meal_route.dart';
 import 'package:big_bite/modules/meals/presentation/route/show_meal_details_route.dart';
+import 'package:big_bite/modules/setting/favorite/presentation/route/favorite_route.dart';
+import 'package:big_bite/modules/setting/favorite/presentation/route/show_favorite_details_route.dart';
+import 'package:big_bite/modules/setting/my_order/presentation/blocs/my_order_bloc.dart';
+import 'package:big_bite/modules/setting/my_order/presentation/route/my_order_route.dart';
+import 'package:big_bite/modules/setting/my_order/presentation/route/show_my_order_details.dart';
 import 'package:big_bite/modules/start/start_route.dart';
 import 'package:go_router/go_router.dart';
 
@@ -27,7 +33,7 @@ import 'package:go_router/go_router.dart';
 
 class AppRoutes {
   static final router = GoRouter(
-    initialLocation: MealRoute.name,
+    initialLocation: LoginRoute.name,
 
     // TODO: add pages route here
     routes: [
@@ -39,6 +45,11 @@ class AppRoutes {
       ShowNewsDetailsRoute.route,
       MealRoute.route,
       ShowMealDetailsRoute.route,
+      BasketRoute.route,
+      MyOrderRoute.route,
+      ShowMyOrderDetailsRoute.route,
+      FavoriteRoute.route,
+      ShowFavoriteDetailsRoute.route,
     ],
   );
 }

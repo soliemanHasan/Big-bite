@@ -5,6 +5,8 @@
 /// EX:  String get {verb}featureName => '$_baseApiUrl/{route}';
 library;
 
+import 'package:big_bite/modules/basket/presentation/blocs/basket_state.dart';
+
 class ApisUrls {
   static ApisUrls? _instance;
   ApisUrls._();
@@ -27,7 +29,7 @@ class ApisUrls {
   // }
 
   /// [_baseUrl] base server url
-  static const String _baseUrl = 'http://192.168.14.169:8000';
+  static const String _baseUrl = 'http://192.168.47.169:8000';
 
   /// [_baseApiUrl] base API url
   static const String _baseApiUrl = '$_baseUrl/api';
@@ -41,6 +43,7 @@ class ApisUrls {
   String get register => '$_baseApiUrl/auth/register';
   String get verifyCode => '$_baseApiUrl/auth/verify';
   String get resendCode => '$_baseApiUrl/auth/resendCode';
+
   String get refreshToken =>
       '$_baseApiUrl/auth/refreshToken'; // TODO: implement your refresh token end point
 
@@ -57,4 +60,14 @@ class ApisUrls {
 
   //show meal details
   String showMealDetails(int id) => '$_baseApiUrl/meal/show/$id';
+
+  //send order
+  String get sendOrder => '$_baseApiUrl/order/store';
+  //my order
+  String showMyOrder(int page) => '$_baseApiUrl/order/?page=$page';
+  //add to favorite
+  String get addToFavorite => '$_baseApiUrl/favorite/store';
+
+  /// show favorite
+  String showFavorite(int page) => '$_baseApiUrl/favorite/?page=$page';
 }

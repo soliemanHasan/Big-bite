@@ -4,10 +4,10 @@ import 'package:go_router/go_router.dart';
 class ShowMealDetailsRoute {
   static const name = '/showDetails';
   static GoRoute route = GoRoute(
-    path: '/showDetails/:id/:title',
+    path: '/showDetails/:id',
     name: name,
-    builder: (context, state) =>
-        ShowMealDetailsScreen(id: state.pathParameters["id"]!,
-        title: state.pathParameters["title"]!,),
+    builder: (context, state) => ShowMealDetailsScreen(
+      id: state.pathParameters["id"]!,
+    ),
   );
 }

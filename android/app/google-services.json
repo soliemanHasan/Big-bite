@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "310307124384",
+    "project_id": "bigbite-5698c",
+    "storage_bucket": "bigbite-5698c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:310307124384:android:d78bd3c11650c9b55b85c5",
+        "android_client_info": {
+          "package_name": "com.e"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAemlr4LM2nHf6hKcCPMtakTohB1bo1ZNA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:310307124384:android:4407b70284218b6c5b85c5",
+        "android_client_info": {
+          "package_name": "com.example.big_bite"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAemlr4LM2nHf6hKcCPMtakTohB1bo1ZNA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

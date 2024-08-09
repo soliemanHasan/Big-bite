@@ -4,10 +4,12 @@ import 'package:big_bite/core/errors/failure.dart';
 import 'package:big_bite/core/paths/images_paths.dart';
 import 'package:big_bite/core/services/service_locator.dart';
 import 'package:big_bite/core/utils/base_state.dart';
+import 'package:big_bite/modules/meals/presentation/route/meal_route.dart';
 import 'package:big_bite/modules/menu/domain/entities/category_menu_entity.dart';
 import 'package:big_bite/modules/menu/presentation/blocs/category_menu_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shimmer/shimmer.dart';
 
 class CategoryMenuScreen extends StatelessWidget {
@@ -22,7 +24,7 @@ class CategoryMenuScreen extends StatelessWidget {
             return ListView.builder(
               itemCount: 10, // Number of shimmer items to display
               itemBuilder: (context, index) => Shimmer.fromColors(
-                direction: ShimmerDirection.ltr,                                                                                                                                                                                                                                                                                                                                        
+                direction: ShimmerDirection.ltr,
                 baseColor: Colors.grey[300]!,
                 highlightColor: Colors.grey[100]!,
                 child: Container(
@@ -53,39 +55,11 @@ class CategoryMenuScreen extends StatelessWidget {
             return FailureComponent(failure: Failure(state.errorMessage));
           } else if (state.isSuccess) {
             return ListView.builder(
-              itemCount: state.data!.length,
-              itemBuilder: (context, index) => Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 250,
-                      child: GridTile(
-                        footer: Container(
-                          padding: const EdgeInsets.all(8.0),
-                          alignment: Alignment.center,
-                          color: AppColors.primary.withOpacity(0.7),
-                          child: Text(state.data![index].name),
-                        ),
-                        child: ClipRRect(
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(20),
-                            topRight: Radius.circular(20),
-                          ),
-                          clipBehavior: Clip.antiAlias,
-                          child: Image.asset(
-                            images[index],
-                            height: 200,
-                            width: double.infinity,
-                            fit: BoxFit.fitWidth,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            );
+                itemCount: state.data!.length,
+                itemBuilder: (context, index) => MealCategoryComponent(
+                      categoryMenuEntity: state.data![index],
+                      imagePath: images[index],
+                    ));
           }
           return Shimmer.fromColors(
             period: const Duration(
@@ -115,4 +89,51 @@ class CategoryMenuScreen extends StatelessWidget {
         ImagesPaths.salad,
         ImagesPaths.snacks,
       ];
+}
+
+class MealCategoryComponent extends StatelessWidget {
+  final CategoryMenuEntity categoryMenuEntity;
+  final String imagePath;
+  const MealCategoryComponent(
+      {super.key, required this.categoryMenuEntity, required this.imagePath});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => context.pushNamed(MealRoute.name, pathParameters: {
+        "id": categoryMenuEntity.id.toString(),
+      }),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 250,
+              child: GridTile(
+                footer: Container(
+                  padding: const EdgeInsets.all(8.0),
+                  alignment: Alignment.center,
+                  color: AppColors.primary.withOpacity(0.7),
+                  child: Text(categoryMenuEntity.name),
+                ),
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
+                  ),
+                  clipBehavior: Clip.antiAlias,
+                  child: Image.asset(
+                    imagePath,
+                    height: 200,
+                    width: double.infinity,
+                    fit: BoxFit.fitWidth,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }

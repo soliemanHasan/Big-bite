@@ -6,6 +6,7 @@ import 'package:big_bite/modules/home/presentation/blocs/home_bloc/home_bloc.dar
 import 'package:big_bite/modules/home/presentation/screens/home_screen.dart';
 import 'package:big_bite/modules/menu/presentation/blocs/category_menu_bloc.dart';
 import 'package:big_bite/modules/menu/presentation/screens/category_menu_screen.dart';
+import 'package:big_bite/modules/setting/setting_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -65,7 +66,7 @@ class _MainScreenState extends State<MainScreen> {
     LocaleKeys.home.tr(),
     LocaleKeys.menu.tr(),
     LocaleKeys.offers.tr(),
-    LocaleKeys.profile.tr(),
+    LocaleKeys.settings.tr(),
   ];
 /* --------------------------------- Screens -------------------------------- */
   static const List<Widget> _widgetOptions = <Widget>[
@@ -74,9 +75,7 @@ class _MainScreenState extends State<MainScreen> {
     Text(
       'Index 2: School',
     ),
-    Text(
-      'Index 3: Settings',
-    ),
+    SettingScreen(),
   ];
   /* ------------------------- BottomNavigationBarItem ------------------------ */
   static final List<BottomNavigationBarItem> _items = [
@@ -108,13 +107,12 @@ class _MainScreenState extends State<MainScreen> {
       label: LocaleKeys.offers.tr(),
     ),
     BottomNavigationBarItem(
-      activeIcon: SvgPicture.asset(
-        SvgsPaths.profileActive,
+      activeIcon: const Icon(
+        Icons.settings,
+        color: AppColors.primary,
       ),
-      icon: SvgPicture.asset(
-        SvgsPaths.profile,
-      ),
-      label: LocaleKeys.profile.tr(),
+      icon: const Icon(Icons.settings),
+      label: LocaleKeys.settings.tr(),
     ),
   ];
 }

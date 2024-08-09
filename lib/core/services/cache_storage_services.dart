@@ -55,6 +55,7 @@ class CacheStorageServices {
 
   String get refreshToken =>
       _preferences?.getString(_Keys.refreshToken) ?? 'no Refresh Token';
+    
 
   // language
   // Language
@@ -67,7 +68,7 @@ class CacheStorageServices {
   bool get hasLanguage => _preferences?.containsKey(_Keys.language) ?? false;
 
   bool get language => _preferences?.getBool(_Keys.language) ?? true;
-
+ 
   Future<void> initCacheLanguage() async {
     if (hasLanguage) return;
     await setLanguage(true);

@@ -5,6 +5,11 @@ import 'package:big_bite/modules/auth/domain/repository/auth_repository.dart';
 import 'package:big_bite/modules/auth/presentation/blocs/login/login_bloc.dart';
 import 'package:big_bite/modules/auth/presentation/blocs/register/register_bloc.dart';
 import 'package:big_bite/modules/auth/presentation/blocs/verify/verify_bloc.dart';
+import 'package:big_bite/modules/basket/data/data_source/basket_data_source.dart';
+import 'package:big_bite/modules/basket/data/data_source/basket_remote_data_source_imp.dart';
+import 'package:big_bite/modules/basket/data/repository/basket_repository_imp.dart';
+import 'package:big_bite/modules/basket/domain/repository/basket_repository.dart';
+import 'package:big_bite/modules/basket/presentation/blocs/basket_bloc.dart';
 import 'package:big_bite/modules/home/data/data_source/home_remote_data_source.dart';
 import 'package:big_bite/modules/home/data/data_source/home_data_source_imp.dart';
 import 'package:big_bite/modules/home/data/repository/home_repository_imp.dart';
@@ -22,6 +27,17 @@ import 'package:big_bite/modules/menu/data/data_source/menu_remote_data_source_i
 import 'package:big_bite/modules/menu/data/repository/menu_repository_imp.dart';
 import 'package:big_bite/modules/menu/domain/repository/menu_repository.dart';
 import 'package:big_bite/modules/menu/presentation/blocs/category_menu_bloc.dart';
+import 'package:big_bite/modules/setting/favorite/data/data_souce/favorite_data_source.dart';
+import 'package:big_bite/modules/setting/favorite/data/data_souce/favorite_remote_data_source_imp.dart';
+import 'package:big_bite/modules/setting/favorite/data/repository/favorite_repository_imp.dart';
+import 'package:big_bite/modules/setting/favorite/domain/repository/favorite_repository.dart';
+import 'package:big_bite/modules/setting/favorite/presentation/blocs/add_to_favorite_bloc.dart/add_to_favorite_bloc.dart';
+import 'package:big_bite/modules/setting/favorite/presentation/blocs/show_favorite_bloc.dart/show_favorite_bloc.dart';
+import 'package:big_bite/modules/setting/my_order/data/data_source/my_order_data_source_imp.dart';
+import 'package:big_bite/modules/setting/my_order/data/data_source/my_order_remote_data_source.dart';
+import 'package:big_bite/modules/setting/my_order/data/repository/my_order_repository_imp.dart';
+import 'package:big_bite/modules/setting/my_order/domain/repository/my_order_repository.dart';
+import 'package:big_bite/modules/setting/my_order/presentation/blocs/my_order_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:logger/logger.dart';
 
@@ -59,19 +75,35 @@ class ServicesLocator {
     sl.registerFactory(() => ShowNewsBloc(sl()));
     sl.registerFactory(() => CategoryMenuBloc(sl()));
     sl.registerFactory(() => VerifyBloc(sl()));
+    sl.registerLazySingleton(() => BasketBloc(sl()));
     sl.registerLazySingleton(() => MealBloc(sl()));
-    sl.registerLazySingleton(() => ShowMealDetailsBloc(sl()));
+    sl.registerLazySingleton(() => MyOrderBloc(sl()));
+
+    sl.registerFactory(() => ShowMealDetailsBloc(sl()));
+    sl.registerFactory(() => AddToFavoriteBloc(sl()));
+    sl.registerLazySingleton(() => ShowFavoriteBloc(sl()));
 
     //// REPOSITORIES
     sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImp(sl()));
     sl.registerLazySingleton<HomeRepository>(() => HomeRepositoryImp(sl()));
     sl.registerLazySingleton<MenuRepository>(() => MenuRepositoryImp(sl()));
     sl.registerLazySingleton<MealRepository>(() => MealRepositoryImp(sl()));
+    sl.registerLazySingleton<BasketRepository>(() => BasketRepositoryImp(sl()));
+    sl.registerLazySingleton<MyOrderRepository>(
+        () => MyOrderRepositoryImp(sl()));
+    sl.registerLazySingleton<FavoriteRepository>(
+        () => FavoriteRepositoryImp(sl()));
 
     //// DATA SOURCES
     sl.registerLazySingleton<AuthDataSource>(() => AuthRemoteDataSourceImp());
     sl.registerLazySingleton<HomeDataSource>(() => HomeDataSourceImp());
     sl.registerLazySingleton<MenuDataSource>(() => MenuRemoteDataSourceImp());
     sl.registerLazySingleton<MealsDataSource>(() => MealsRemoteDataSourceImp());
+    sl.registerLazySingleton<FavoriteDataSource>(
+        () => FavoriteRemoteDataSourceImp());
+    sl.registerLazySingleton<BasketDataSource>(
+        () => BasketRemoteDataSourceImp());
+    sl.registerLazySingleton<MyOrderRemoteDataSource>(
+        () => MyOrderDataSourceImp());
   }
 }

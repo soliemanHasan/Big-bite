@@ -1,3 +1,4 @@
+import 'package:big_bite/core/constants/app_colors.dart';
 import 'package:big_bite/core/core_component/loading_component.dart';
 import 'package:big_bite/core/extensions/ui_extensions/app_button_theme.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ class AppButton extends StatelessWidget {
       this.width,
       this.margin,
       this.isLoading,
+      this.color,
       this.style});
 
   final String label;
@@ -20,6 +22,7 @@ class AppButton extends StatelessWidget {
   final double? height;
   final double? width;
   final TextStyle? style;
+  final Color? color;
   bool? isLoading;
 
   @override
@@ -30,7 +33,10 @@ class AppButton extends StatelessWidget {
         width: width ?? double.infinity,
         height: height ?? 14.w,
         margin: margin,
-        decoration: Theme.of(context).appButtonTheme,
+        decoration: BoxDecoration(
+          color: color ?? AppColors.primary,
+          borderRadius: BorderRadius.circular(4),
+        ),
         alignment: Alignment.center,
         child: isLoading == true
             ? const LoadingComponent()

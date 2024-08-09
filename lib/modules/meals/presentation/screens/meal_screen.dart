@@ -10,19 +10,31 @@ import 'package:big_bite/modules/meals/presentation/component/meal_component.dar
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class MealScreen extends StatelessWidget {
-  const MealScreen({super.key});
+class MealScreen extends StatefulWidget {
+  final String categoryId;
+  const MealScreen({super.key, required this.categoryId});
+
+  @override
+  State<MealScreen> createState() => _MealScreenState();
+}
+
+class _MealScreenState extends State<MealScreen> {
+  @override
+  void initState() {
+    sl<MealBloc>()
+        .add(RefreshMealEvent(categoryId: int.parse(widget.categoryId)));
+    sl<MealBloc>()
+        .add(FetchMealFirstTimeEvent(categoryId: int.parse(widget.categoryId)));
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: BlocProvider(
-        create: (context) => sl<MealBloc>()
-          ..add(FetchMealFirstTimeEvent(
-            categoryId: 1,
-          )),
-        child: BlocBuilder<MealBloc, PaginationState<List<MealEntity>>>(
+      body: Builder(builder: (context) {
+        return BlocBuilder<MealBloc, PaginationState<List<MealEntity>>>(
+          bloc: sl<MealBloc>(),
           builder: (context, state) {
             if (state.isLoading) {
               return Container(
@@ -44,19 +56,23 @@ class MealScreen extends StatelessWidget {
                           color: AppColors.grey,
                         ),
                     onRefresh: () {
-                      sl<MealBloc>().add(const RefreshMealEvent(categoryId: 1));
-                      sl<MealBloc>()
-                          .add(const FetchMealFirstTimeEvent(categoryId: 1));
+                      sl<MealBloc>().add(RefreshMealEvent(
+                        categoryId: int.parse(widget.categoryId),
+                      ));
+                      sl<MealBloc>().add(FetchMealFirstTimeEvent(
+                        categoryId: int.parse(widget.categoryId),
+                      ));
                     },
-                    onCallMoreData: () => sl<MealBloc>()
-                        .add(const LoadMoreMealEvent(categoryId: 1)),
+                    onCallMoreData: () => sl<MealBloc>().add(LoadMoreMealEvent(
+                          categoryId: int.parse(widget.categoryId),
+                        )),
                     state: state),
               );
             }
             return SizedBox();
           },
-        ),
-      ),
+        );
+      }),
     );
   }
 }

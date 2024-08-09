@@ -22,4 +22,9 @@ class SvgsPaths {
   static const String profile = '$_baseSvgsPath/profile.svg';
   static const String profileActive = '$_baseSvgsPath/profileActive.svg';
   static const String sendOtp = '$_baseSvgsPath/sendOtp.svg';
+  static const String add = '$_baseSvgsPath/add.svg';
+  static const String subtract = '$_baseSvgsPath/subtract.svg';
+  static const String basket = '$_baseSvgsPath/basket.svg';
+  static const String takeAway = '$_baseSvgsPath/takeAway.svg';
+  static const String delivery = '$_baseSvgsPath/delivery.svg';
 }

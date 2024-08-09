@@ -66,6 +66,7 @@ class CodegenLoader extends AssetLoader {
     "offers": 'العروض',
     "viewAll": 'عرض الكل ',
     "otherAddress": ' عنوان اخر ',
+    "settings": 'الضبط',
   };
   static const Map<String, dynamic> en_US = {
     "noInternetConnection": "No Internet connection, try again later",
@@ -120,6 +121,7 @@ class CodegenLoader extends AssetLoader {
     "confirmationPassword": 'Confirmation Password',
     "viewAll": 'View All',
     "otherAddress": 'Other Address',
+    "settings": 'Settings',
   };
   static const Map<String, Map<String, dynamic>> mapLocales = {
     "ar_SY": ar_SY,

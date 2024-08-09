@@ -6,11 +6,12 @@ import '../screens/main_screen.dart';
 class MainRoute {
   static const String name = '/main';
   static GoRoute route = GoRoute(
+    name: name,
     path: name,
-    redirect: (context, state) {
-      if (!CacheStorageServices().hasToken) return LoginRoute.name;
-      return null;
-    },
+    // redirect: (context, state) {
+    //   if (!CacheStorageServices().hasToken) return LoginRoute.name;
+    //   return null;
+    // },
     builder: (context, state) => const MainScreen(),
   );
 }

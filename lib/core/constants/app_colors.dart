@@ -28,6 +28,7 @@ class AppColors {
   // TODO: customize your Colors
 
   static const primary = Color(0XFFEC3525);
+  static const primarywithocity = Color(0x90EC3525);
   static const Color green = Color(0xFF4CAF50);
   static const Color darkGrey = Color(0xFFB1B1B1);
 
@@ -45,6 +46,10 @@ class AppColors {
   static const Color hintColor = Color(0xFFd6d6d7);
   static const Color navigationIconBarColor = Color(0xFFACACAC);
   static const Color closeColor = Color(0Xff29282f);
+  static const Color bookComponentColor = Color(0xffe7f2f3);
+  static const Color selectedIconColor = Color(0x80EC3525);
+    static const Color greyLit =Color(0xfff3f0f0);
+
 
   static const Color textGrey = Color(0xFFA89E9E);
 

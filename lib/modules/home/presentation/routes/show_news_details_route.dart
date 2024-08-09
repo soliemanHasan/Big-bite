@@ -5,7 +5,7 @@ class ShowNewsDetailsRoute {
   static const name = '/showNewsDetails';
   static GoRoute route = GoRoute(
     path: '/showNewsDetails/:id',
-    name: name,
+  name: name,
     builder: (context, state) => ShowNewsDetailsScreen(
       id: state.pathParameters["id"]!,
     ),

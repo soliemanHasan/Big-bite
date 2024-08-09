@@ -15,7 +15,6 @@ class MealComponent extends StatelessWidget {
       onTap: () =>
           context.pushNamed(ShowMealDetailsRoute.name, pathParameters: {
         "id": mealEntity.id.toString(),
-        "title": mealEntity.name,
       }),
       child: Container(
         padding: const EdgeInsets.all(10),
@@ -33,9 +32,14 @@ class MealComponent extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    mealEntity.name,
-                    style: Theme.of(context).textTheme.titleMedium,
+                  SizedBox(
+                    width: 150.w,
+                    child: Text(
+                      mealEntity.name,
+                      style: Theme.of(context).textTheme.titleMedium,
+                      softWrap: true,
+                      maxLines: 2,
+                    ),
                   ),
                   Text(
                     "Price ${mealEntity.price}",

@@ -49,4 +49,5 @@ abstract class LocaleKeys {
   static const profile = 'profile';
   static const offers = 'offers';
   static const viewAll = 'viewAll';
+  static const settings = 'settings';
 }

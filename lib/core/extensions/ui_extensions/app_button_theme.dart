@@ -5,7 +5,7 @@ extension AppButtonTheme on ThemeData {
 
   BoxDecoration get appButtonTheme {
     return BoxDecoration(
-      color: primaryColor,
+      color: primaryColor ,
       borderRadius: BorderRadius.circular(4),
     );
   }
